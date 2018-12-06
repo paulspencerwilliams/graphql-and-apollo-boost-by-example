@@ -6,10 +6,18 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import ApolloProvider from 'react-apollo/ApolloProvider'
+import defaults from './defaults'
+import resolvers from './resolvers'
+import typeDefs from './typeDefs'
 
 const URI = 'https://fakerql.com/graphql'
 const client = new ApolloClient({
   uri: URI,
+  clientState: {
+    defaults,
+    resolvers,
+    typeDefs,
+  },
 })
 client
   .query({
