@@ -7,7 +7,14 @@ import { PropTypes } from 'prop-types'
 const TodosView = ({ error, loading, todos }) => {
   if (loading) return <div>Loading</div>
   if (error) return <div>Error</div>
-  return todos.map(todo => <Todo key={todo.id} title={todo.title} />)
+  return todos.map(todo => (
+    <Todo
+      key={todo.id}
+      title={todo.title}
+      id={todo.id}
+      completed={todo.completed}
+    />
+  ))
 }
 
 const GET_TODOS = gql`
@@ -15,6 +22,7 @@ const GET_TODOS = gql`
     allTodos {
       id
       title
+      completed @client
     }
   }
 `
